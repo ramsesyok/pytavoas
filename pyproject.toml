@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytavoas"
+version = "0.1.0"
+authors = [{name = "pytavoas", email = "example@example.com"}]
+description = "Generate Tavern tests and endpoint docs from OpenAPI definitions"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["click"]
+
+[project.scripts]
+pytavoas = "pytavoas.cli:main"
+
+
