@@ -14,22 +14,22 @@ def cli():
 @click.argument("openapi_file", type=click.Path(exists=True))
 @click.argument("scenario_file", type=click.Path(exists=True))
 @click.argument("template_file", type=click.Path(exists=True))
-@click.argument("output_file", type=click.Path(exists=True))
+@click.argument("output_file", type=click.Path())
 def generate_cmd(
     openapi_file: str, scenario_file: str, template_file: str, output_file: str
 ) -> None:
     """Generate Tavern test templates from OPENAPI_FILE."""
     generate.generate(
         openapi_file=openapi_file,
-        scenario_file="scenario.yaml",
-        template_file="template_scenario.j2",
-        output_file="output/test_scenario.tavern.yaml",
+        scenario_file=scenario_file,
+        template_file=template_file,
+        output_file=output_file,
     )
 
 
 @cli.command()
 @click.argument("openapi_file", type=click.Path(exists=True))
-@click.argument("output_file", type=click.Path(exists=True))
+@click.argument("output_file", type=click.Path())
 def endpoints_cmd(openapi_file: str, output_file: str) -> None:
     """List endpoints defined in OPENAPI_FILE."""
     endpoints.list_endpoints(input_file=openapi_file, output_file=output_file)

@@ -9,7 +9,12 @@ authors = [{name = "pytavoas", email = "example@example.com"}]
 description = "Generate Tavern tests and endpoint docs from OpenAPI definitions"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["click"]
+dependencies = [
+    "click",
+    "Jinja2",
+    "openpyxl",
+    "PyYAML",
+]
 
 [project.scripts]
 pytavoas = "pytavoas.cli:main"
