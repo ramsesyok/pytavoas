@@ -1,0 +1,20 @@
+test_name: "{{ test_name }}"
+
+stages:
+{% for op in operations %}
+  - name: "{{ op.custom_name }}"
+    request:
+      method: "{{ op.method|upper }}"
+      url: "{{ op.path }}"
+      headers:
+        Content-Type: application/json
+      {% if op.request_body %}
+      json: {{ op.request_body | to_nice_yaml(indent=6) }}
+      {% endif %}
+    response:
+      status_code: 200
+      {% if op.response_body %}
+      body: {{ op.response_body | to_nice_yaml(indent=6) }}
+      {% endif %}
+
+{% endfor %}

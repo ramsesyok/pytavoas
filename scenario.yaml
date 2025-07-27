@@ -1,0 +1,6 @@
+test_name: "シナリオテスト1"
+scenario:
+  - name: ペットの追加
+    operationId: addPet
+  - name: ペット情報の更新
+    operationId: updatePet
