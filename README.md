@@ -18,10 +18,15 @@ The command line tool provides two subcommands using
 [click](https://pypi.org/project/click/):
 
 ```bash
-pytavoas generate path/to/openapi.yaml --output-dir tests
-pytavoas endpoints path/to/openapi.yaml --excel endpoints.xlsx
+# Generate Tavern test templates using a scenario and Jinja template
+pytavoas generate openapi.yaml scenario.yaml template_scenario.j2 \
+    output/test_scenario.tavern.yaml
+
+# List all endpoints to an Excel file
+pytavoas endpoints openapi.yaml output/openapi_operations.xlsx
 ```
 
-`generate` creates Tavern YAML templates, while `endpoints` lists the
-available endpoints and can optionally write them to an Excel file.
+`generate` reads an OpenAPI document, scenario YAML and Jinja2 template and
+writes a Tavern test file. `endpoints` lists the available operations and can
+output them to an Excel spreadsheet.
 
