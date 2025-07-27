@@ -17,9 +17,30 @@ def cli():
 
 @cli.command()
 @click.argument("openapi_file", type=click.Path(exists=True))
-@click.argument("scenario_file", type=click.Path(exists=True))
-@click.argument("template_file", type=click.Path(exists=True))
-@click.argument("output_file", type=click.Path())
+@click.option(
+    "--scenario",
+    "-s",
+    "scenario_file",
+    required=True,
+    type=click.Path(exists=True),
+    help="Scenario YAML file",
+)
+@click.option(
+    "--template",
+    "-t",
+    "template_file",
+    required=True,
+    type=click.Path(exists=True),
+    help="Jinja2 template file",
+)
+@click.option(
+    "--output",
+    "-o",
+    "output_file",
+    required=True,
+    type=click.Path(),
+    help="Output Tavern YAML file",
+)
 def generate_cmd(
     openapi_file: str, scenario_file: str, template_file: str, output_file: str
 ) -> None:
@@ -35,7 +56,14 @@ def generate_cmd(
 
 @cli.command()
 @click.argument("openapi_file", type=click.Path(exists=True))
-@click.argument("output_file", type=click.Path())
+@click.option(
+    "--output",
+    "-o",
+    "output_file",
+    required=True,
+    type=click.Path(),
+    help="Excel file path",
+)
 def endpoints_cmd(openapi_file: str, output_file: str) -> None:
     """OpenAPI に定義されたエンドポイント一覧を出力するサブコマンド."""
     # Excel への書き出しなどの処理は ``endpoints.list_endpoints`` が行います。
